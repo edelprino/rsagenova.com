@@ -1,0 +1,25 @@
+name: RockClimbing News Build
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.0.0
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+      - name: Import all articles and issues
+        run: cargo run
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+      - name: Build and Deploy
+        uses: shalzz/zola-deploy-action@v0.16.1
+        env:
+          BUILD_DIR: website
+          PAGES_BRANCH: gh-pages
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
