@@ -1,4 +1,4 @@
-name: RockClimbing News Build
+name: CI
 on:
   push:
     branches:
@@ -16,7 +16,7 @@ jobs:
       - name: Import all articles and issues
         run: cargo run
         env:
-          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
       - name: Build and Deploy
         uses: shalzz/zola-deploy-action@v0.16.1
         env:
