@@ -10,7 +10,7 @@ build_search_index = false
 title = "RSA Genova"
 description = "RSA Genova"
 
-generate_feed = true
+generate_feed = false
 
 [markdown]
 # Whether to do syntax highlighting

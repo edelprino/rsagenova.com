@@ -1,0 +1,53 @@
+
+{% extends "base.html" %}
+
+{% block title %} - {{page.title | title}}{% endblock %}
+
+{% block content %}
+<h1 class="title has-text-centered" style="margin-top:20px">{{ page.title | title }}</h1>
+<div class="has-text-centered">
+    {% if page.extra.is_nap %}
+      <span class="tag is-warning">NAP</span>
+    {% elif page.extra.is_nat %}
+      <span class="tag is-success">NAT</span>
+    {% elif page.extra.is_prima_fascia %}
+      <span class="tag is-info">Prima fascia</span>
+    {% elif page.extra.is_nucleo_alzhaimer %}
+      <span class="tag is-light">Nucleo alzhaimer</span>
+    {% endif %}
+</div>
+
+<div class="content has-text-justified">
+
+  <h3 class="title is-3">Convenzioni</h3>
+  <ul>
+    {% if page.extra.asl_convention %}
+    <li>Convenzione ASL</li>
+    {% endif %}
+
+    {% if page.extra.municipaly_convention %}
+    <li>Convenzione Comunale</li>
+    {% endif %}
+  </ul>
+
+  <h3 class="title is-3">Contatti</h3>
+  <ul>
+    {% if page.extra.website %}
+      <li>Sito web: <a href="{{page.extra.website}}">{{page.extra.website}}</a></li>
+    {% endif %}
+    {% if page.extra.email %}
+      <li>Email: <a href="email:{{page.extra.email}}">{{page.extra.email}}</a></li>
+    {% endif %}
+    {% if page.extra.telephone %}
+      <li>Telefono: <a href="tel:{{page.extra.telephone}}">{{page.extra.telephone}}</a></li>
+    {% endif %}
+  </ul>
+
+  <h3 class="title is-3">Indirizzo</h3>
+  <span class="subtitle">{{page.extra.address}}, {{page.extra.city | title}}</span>
+
+
+  {{ page.content | safe }}
+</div>
+{% endblock content %}
+

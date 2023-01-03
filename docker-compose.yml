@@ -14,5 +14,11 @@ services:
     image: rust:latest
     volumes:
       - .:/app
+      - registry:/usr/local/cargo/registry
     working_dir: /app
     command: cargo run
+    env_file:
+      - .env
+
+volumes:
+  registry:

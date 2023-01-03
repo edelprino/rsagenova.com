@@ -1,5 +1,5 @@
 +++
-title = "Issues"
+title = "RSA"
 template = "index.html"
-page_template = "issue.html"
+page_template = "rsa.html"
 +++

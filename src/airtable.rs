@@ -1,4 +1,3 @@
-use serde::de::DeserializeOwned;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
@@ -64,6 +63,7 @@ enum AirtableValue {
     Number(f64),
     Records(Vec<String>),
     Boolean(bool),
+    Multiselect(Vec<String>),
 }
 
 impl Airtable {
@@ -84,6 +84,9 @@ impl Airtable {
             .send()
             .await
             .unwrap();
+
+        // println!("{:?}", res.text().await.unwrap());
+        // vec![]
 
         res.json::<AirtableResponse>().await.unwrap().records
     }
@@ -133,7 +136,6 @@ mod tests {
     }
 
     fn create_airtable() -> Airtable {
-        // let token = std::env::var("NOTION_TOKEN").expect("NOTION_TOKEN must be set");
         let token =
             "pat3w3SppYuH9cLkA.76834ae133f57cde6c031e92dad370022bf11b665976c9649d1fcc698e46721c";
         Airtable::new(&token)

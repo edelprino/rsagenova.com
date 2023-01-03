@@ -2,10 +2,34 @@
 
 {% block content %}
 <div class="content">
-<ul>
+{{ section.content | safe }}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Struttura</th>
+      <th scope="col">Città</th>
+      <th scope="col">Tipo di ricovero</th>
+    </thead>
+  <tbody>
   {% for page in section.pages %}
-  <li><a href="{{ page.permalink | safe }}">{{ page.title }}</a></li>
+  <tr>
+    <td><a href="{{ page.permalink | safe }}">{{ page.title | title }}</a></td>
+    <td>{{page.extra.city | capitalize}}</td>
+    <td>
+      {% if page.extra.is_nap %}
+        <span class="tag is-warning">NAP</span>
+      {% elif page.extra.is_nat %}
+        <span class="tag is-success">NAT</span>
+      {% elif page.extra.is_prima_fascia %}
+        <span class="tag is-info">Prima fascia</span>
+      {% elif page.extra.is_nucleo_alzhaimer %}
+        <span class="tag is-light">Nucleo alzhaimer</span>
+      {% endif %}
+    </td>
+  </tr>
   {% endfor %}
-</ul>
+  </tbody>
+</table>
 </div>
 {% endblock content %}
