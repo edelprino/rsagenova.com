@@ -19,11 +19,14 @@
     <td>
       {% if page.extra.is_nap %}
         <span class="tag is-warning">NAP</span>
-      {% elif page.extra.is_nat %}
+      {% endif %}
+      {% if page.extra.is_nat %}
         <span class="tag is-success">NAT</span>
-      {% elif page.extra.is_prima_fascia %}
+      {% endif %}
+      {% if page.extra.is_prima_fascia %}
         <span class="tag is-info">Prima fascia</span>
-      {% elif page.extra.is_nucleo_alzhaimer %}
+      {% endif %}
+      {% if page.extra.is_nucleo_alzhaimer %}
         <span class="tag is-light">Nucleo alzhaimer</span>
       {% endif %}
     </td>
