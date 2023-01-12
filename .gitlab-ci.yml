@@ -13,5 +13,5 @@ deploy:
     - gcloud auth activate-service-account --key-file gcloud-service-key.json
     - gcloud config set project $GCP_PROJECT_ID
     # - gcloud builds submit . --config=cloudbuild.yml
-    - gcloud builds submit --tag gcr.io/$GCP_PROJECT_ID/chansey
+    - gcloud builds submit --suppress-logs --tag gcr.io/$GCP_PROJECT_ID/chansey
     - gcloud run deploy chansey --image gcr.io/$GCP_PROJECT_ID/chansey --region=eu-west4 --platform managed --allow-unauthenticated # Run the gcloud run deploy command to deploy our new service
