@@ -1,8 +1,0 @@
-
-steps:
-  - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'build', '-t', 'gcr.io/pokedex-374423/chansey', '.' ]
-  - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'push', 'gcr.io/pokedex-374423/chansey']
-  - name: "gcr.io/cloud-builders/gcloud"
-    args: ['run', 'deploy', 'erp-ui', '--image', 'gcr.io/pokedex-374423/chansey', '--region', 'europe-west4', '--platform', 'managed', '--allow-unauthenticated']
